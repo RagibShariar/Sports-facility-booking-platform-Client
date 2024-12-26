@@ -1,3 +1,4 @@
+import CallToAction from "@/components/CallToAction";
 import FeaturedVenues from "@/components/FeaturedVenues";
 import HeroSection from "@/components/HeroSection";
 import HowItWorks from "@/components/HowItWorks";
@@ -7,7 +8,8 @@ const Home = () => {
     <>
       <HeroSection />
       <HowItWorks />
-      <FeaturedVenues/>
+      <FeaturedVenues />
+      <CallToAction />
     </>
   );
 };

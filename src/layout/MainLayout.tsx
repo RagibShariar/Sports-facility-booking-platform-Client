@@ -1,3 +1,4 @@
+import Footer from "@/components/shared/Footer";
 import Navbar from "@/components/shared/Navbar";
 import { useTheme } from "@/hooks/useTheme";
 import React from "react";
@@ -11,6 +12,7 @@ const MainLayout: React.FC = () => {
     <div className="">
       <Navbar />
       <Outlet />
+      <Footer />
     </div>
   );
 };
