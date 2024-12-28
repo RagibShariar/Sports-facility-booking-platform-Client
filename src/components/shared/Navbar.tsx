@@ -20,6 +20,7 @@ import { logOut, useCurrentToken } from "@/redux/features/authSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { CircleUser, LogOut, Menu, NotebookPen } from "lucide-react";
 import { toast } from "sonner";
+import logo from "../../assets/logo.svg";
 import { Button } from "../ui/button";
 import {
   DropdownMenu,
@@ -45,7 +46,10 @@ const Navbar = () => {
       <nav className="lg:max-w-7xl mx-auto  py-3  flex items-center justify-between  ">
         {/* LOGO */}
         <div className="font-semibold text-xl">
-          <NavLink to={"/"}> BookMyPlay </NavLink>
+          <NavLink to={"/"} className="flex items-end gap-1">
+            <img width={35} src={logo} alt="" />
+            BookMyPlay{" "}
+          </NavLink>
         </div>
 
         {/* DESKTOP MENU */}

@@ -88,3 +88,28 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+.featureCard {
+  box-shadow: 0 4px 24px #d4d4d440;
+}
+.featureCard:hover .featureIcon {
+  background-color: #097e52;
+}
+.features {
+  background-image: url(../src/assets/images/features/pattern.svg);
+  background-repeat: no-repeat;
+  background-position: right;
+}
+
+.testimonial {
+  background-image: url("../src/assets/images/testimonial/testimonial.png");
+  background-repeat: no-repeat;
+  background-position: right top;
+  background-size: cover;
+  right: 50px;
+  top: 50px;
+  position: absolute;
+  content: "";
+  width: 141px;
+  height: 123px;
+}

@@ -21,7 +21,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
             {title2}
           </span>
           <img
-            className="absolute dark:-top-14 -top-5 left-1/3 -z-30"
+            className="absolute dark:-top-14 -top-5 left-1/3 -z-10 "
             src={titleHead}
             alt=""
           />
