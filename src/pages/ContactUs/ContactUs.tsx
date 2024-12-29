@@ -1,3 +1,4 @@
+import { MapPin, PhoneCall } from "lucide-react";
 import { RxEnvelopeClosed } from "react-icons/rx";
 
 const ContactUs = () => {
@@ -34,24 +35,24 @@ const ContactUs = () => {
             </div>
             <div className="flex gap-4 items-center bg-white p-5 w-4/12 myShadow">
               <div className="bg-gradient flex items-center justify-center p-6 rounded-xl">
-                <RxEnvelopeClosed size={30} color="white" />
+                <PhoneCall size={30} color="white" />
               </div>
               <div>
                 <h5 className="text-[#192335] text-xl font-bold">
-                  Email Address
+                Phone Number
                 </h5>
-                <p className="text-gray-500">info@bookmyplay.com</p>
+                <p className="text-gray-500">+1 8164 164654</p>
               </div>
             </div>
             <div className="flex gap-4 items-center bg-white p-5 w-4/12 myShadow">
               <div className="bg-gradient flex items-center justify-center p-6 rounded-xl">
-                <RxEnvelopeClosed size={30} color="white" />
+                <MapPin size={30} color="white" />
               </div>
               <div>
                 <h5 className="text-[#192335] text-xl font-bold">
-                  Email Address
+                Location
                 </h5>
-                <p className="text-gray-500">info@bookmyplay.com</p>
+                <p className="text-gray-500">3365 Central AvenueTeterboro, NJ 07608</p>
               </div>
             </div>
           </div>
