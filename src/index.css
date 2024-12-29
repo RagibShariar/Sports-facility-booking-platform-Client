@@ -71,6 +71,13 @@
   }
 }
 
+.howItWorks{
+  background-image: url("../src/assets/images/howItWorks/bg-01.9d6fef1969fff93121c7 (1).svg");
+  background-repeat: no-repeat;
+  background-position: left;
+  
+}
+
 .facilityCard:hover img {
   scale: 1.1;
 }
@@ -112,4 +119,21 @@
   content: "";
   width: 141px;
   height: 123px;
+}
+
+.about-us{
+  background: url("../src//assets/images/aboutUs/breadcrumb-bg2.764bf72ee919b156bf7d.jpg") #241d39cc no-repeat;
+  background-size: cover;
+  background-blend-mode: multiply;
+ 
+}
+.contact-us{
+  background: url("../src//assets/images/aboutUs/breadcrumb-bg.d8ed94a8f808358210f5.png") #241d39cc no-repeat;
+  background-size: cover;
+  background-blend-mode: multiply;
+ 
+}
+
+.myShadow{
+ box-shadow:  0 4px 44px #d3d3d340;
 }

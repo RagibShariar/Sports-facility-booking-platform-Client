@@ -15,7 +15,8 @@ import { Button } from "./ui/button";
 const HowItWorks = () => {
   return (
     <>
-      <section className="py-10 lg:pb-10">
+      <section className=" py-10 lg:pb-10">
+        <div className="howItWorks">
         <SectionHeader
           title1="How It "
           title2="Works"
@@ -84,7 +85,8 @@ const HowItWorks = () => {
               </Button>
             </CardFooter>
           </Card>
-        </div>
+          </div>
+          </div>
       </section>
     </>
   );
