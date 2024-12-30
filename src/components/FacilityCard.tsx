@@ -5,7 +5,7 @@ import { Separator } from "./ui/separator";
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function FacilityCard({ facility }: any) {
   return (
-    <div className="facilityCard max-w-sm mx-3 lg:mx-0 rounded-lg shadow-lg  overflow-hidden dark:border dark:text-gray-300 ">
+    <div className="facilityCard max-w-sm mx-3 lg:mx-0 rounded-lg shadow-lg  overflow-hidden bg-white dark:border dark:text-gray-300 dark:bg-transparent">
       <div className="relative overflow-hidden">
         <Link to={`/facilities/${facility?._id}`}>
           <img

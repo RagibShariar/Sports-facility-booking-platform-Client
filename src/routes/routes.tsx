@@ -1,3 +1,4 @@
+import MainLayout from "@/layout/MainLayout";
 import UserDashboardLayout from "@/layout/UserDashboardLayout";
 import AboutUs from "@/pages/AboutUs/AboutUs";
 import { Dashboard } from "@/pages/Admin/Dashboard";
@@ -11,6 +12,7 @@ import Checkout from "@/pages/Checkout/Checkout";
 import ContactUs from "@/pages/ContactUs/ContactUs";
 import FacilityDetails from "@/pages/FacilityDetails/FacilityDetails";
 import FacilityListing from "@/pages/FacilityListing/FacilityListing";
+import UserDashboard from "@/pages/User/UserDashboard";
 import UserProfile from "@/pages/User/UserProfile";
 import ViewBookings from "@/pages/User/ViewBookings";
 import { createBrowserRouter } from "react-router-dom";
@@ -18,8 +20,7 @@ import Home from "../pages/Home/Home";
 import { adminPaths } from "./admin.routes";
 import AdminRoutes from "./AdminRoutes";
 import ProtectedRoutes from "./ProtectedRoutes";
-import MainLayout from "@/layout/MainLayout";
-import UserDashboard from "@/pages/User/UserDashboard";
+import DashboardLayout from "@/layout/DashboardLayout";
 
 export const router = createBrowserRouter([
   {
@@ -49,11 +50,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "contact",
-        element: (
-          <ProtectedRoutes>
-            <ContactUs />
-          </ProtectedRoutes>
-        ),
+        element: <ContactUs />,
       },
       {
         path: "profile",
@@ -115,7 +112,7 @@ export const router = createBrowserRouter([
     path: "/admin",
     element: (
       <AdminRoutes>
-        <Dashboard />
+        <DashboardLayout />
       </AdminRoutes>
     ),
     children: adminPaths,

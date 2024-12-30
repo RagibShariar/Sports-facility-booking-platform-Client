@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -27,7 +27,7 @@ const LoginModal = () => {
     register,
     handleSubmit,
     formState: { errors },
-    setValue
+    setValue,
   } = useForm();
   const navigate = useNavigate();
   const [login] = useLoginMutation();
@@ -69,7 +69,7 @@ const LoginModal = () => {
   };
   const handleAdminDemoLogin = () => {
     // Fill in the demo email and password
-    setValue("email", "admin@gmail.com");
+    setValue("email", "srragib@gmail.com");
     setValue("password", "123456");
   };
 
@@ -90,17 +90,25 @@ const LoginModal = () => {
         </DialogHeader>
 
         <div className="mb-4 lg:flex justify-between gap-6 ">
-            <Button onClick={handleUserDemoLogin} className="block font-Outfit bg-teal-700 hover:bg-teal-800 w-full h-fit py-2 px-4 text-left">
-              <p className="text-lg">Demo User Login</p>
-              <p className="font-normal tracking-wide">Email: user@gmail.com</p>
-              <p className="font-normal tracking-wide">Password: 123456</p>
-            </Button>
-            <Button onClick={handleAdminDemoLogin} className="block font-Outfit bg-teal-700 hover:bg-teal-800 w-full h-fit py-2 px-4 text-left">
-              <p className="text-lg">Demo Admin Login</p>
-              <p className="font-normal tracking-wide">Email: admin@gmail.com</p>
-              <p className="font-normal tracking-wide">Password: 123456</p>
-            </Button>
-          </div>
+          <Button
+            onClick={handleUserDemoLogin}
+            className="block font-Outfit bg-teal-700 hover:bg-teal-800 w-full h-fit py-2 px-4 text-left"
+          >
+            <p className="text-lg">Demo User Login</p>
+            <p className="font-normal tracking-wide">Email: user@gmail.com</p>
+            <p className="font-normal tracking-wide">Password: 123456</p>
+          </Button>
+          <Button
+            onClick={handleAdminDemoLogin}
+            className="block font-Outfit bg-teal-700 hover:bg-teal-800 w-full h-fit py-2 px-4 text-left"
+          >
+            <p className="text-lg">Demo Admin Login</p>
+            <p className="font-normal tracking-wide">
+              Email: srragib@gmail.com
+            </p>
+            <p className="font-normal tracking-wide">Password: 123456</p>
+          </Button>
+        </div>
 
         <form onSubmit={handleSubmit(handleLogin)}>
           <div className="grid gap-4">

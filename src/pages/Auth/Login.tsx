@@ -59,7 +59,7 @@ const Login = () => {
   };
   const handleAdminDemoLogin = () => {
     // Fill in the demo email and password
-    setValue("email", "admin@gmail.com");
+    setValue("email", "srragib@gmail.com");
     setValue("password", "123456");
   };
 
@@ -78,7 +78,7 @@ const Login = () => {
             </Button>
             <Button onClick={handleAdminDemoLogin} className="block font-Outfit bg-teal-700 hover:bg-teal-800 w-full h-fit py-2 px-4 text-left">
               <p className="text-lg">Demo Admin Login</p>
-              <p className="font-normal tracking-wide">Email: admin@gmail.com</p>
+              <p className="font-normal tracking-wide">Email: srragib@gmail.com</p>
               <p className="font-normal tracking-wide">Password: 123456</p>
             </Button>
           </div>

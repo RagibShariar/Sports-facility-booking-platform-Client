@@ -1,9 +1,15 @@
 import AddFacility from "@/pages/Admin/AddFacility";
 import AdminWelcome from "@/pages/Admin/AdminWelcome";
 import Bookings from "@/pages/Admin/Bookings";
+import Dashboard from "@/pages/Admin/Dashboard";
 import ManageFacilities from "@/pages/Admin/ManageFacilities";
 
 export const adminPaths = [
+  {
+    path: "/admin",
+    index: true,
+    element: <Dashboard />,
+  },
   {
     path: "welcome",
     element: <AdminWelcome />,
@@ -18,6 +24,6 @@ export const adminPaths = [
   },
   {
     path: "bookings",
-    element: <Bookings/>
+    element: <Bookings />,
   },
 ];

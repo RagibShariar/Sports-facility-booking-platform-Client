@@ -16,9 +16,9 @@ import {
 } from "@/components/ui/sheet";
 import Login from "@/pages/Auth/LoginModal";
 
-import { logOut, useCurrentToken } from "@/redux/features/authSlice";
+import { logOut, useCurrentToken, userRole } from "@/redux/features/authSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { CircleUser, LogOut, Menu, NotebookPen } from "lucide-react";
+import { CircleUser, LogOut, Menu, NotebookPen, Users } from "lucide-react";
 import { toast } from "sonner";
 import logo from "../../assets/logo.svg";
 import { Button } from "../ui/button";
@@ -35,6 +35,7 @@ import ThemeSwitcher from "./ThemeSwitcher";
 const Navbar = () => {
   const token = useAppSelector(useCurrentToken);
   const dispatch = useAppDispatch();
+  const role = useAppSelector(userRole)
 
   const handleLogOut = () => {
     dispatch(logOut());
@@ -110,7 +111,7 @@ const Navbar = () => {
         <div className="flex items-center lg:gap-4">
           <ThemeSwitcher />
           {!token ? (
-            <span className="bg-gray-50 text-black rounded-full font-medium px-4 py-1 hover:bg-gradient hover:text-white duration-300  ease-in-out">
+            <span className="bg-gray-50 text-black rounded-full font-medium px-6 py-2 hover:bg-gradient hover:text-white duration-300  ease-in-out ">
               <Login />
             </span>
           ) : (
@@ -129,11 +130,22 @@ const Navbar = () => {
               <DropdownMenuContent align="end">
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>
-                  <Link to="/user" className="flex">
+                  <DropdownMenuItem>
+                    {role === "admin" ? (
+                      <Link to="/admin" className="flex">
+                        <NotebookPen size={17} className="mr-2" />
+                        Dashboard
+                      </Link>
+                    )
+                      :
+                      (
+                        <Link to="/user" className="flex">
                     <NotebookPen size={17} className="mr-2" />
                     Dashboard
                   </Link>
+                      )
+                  }
+                  
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={handleLogOut}>

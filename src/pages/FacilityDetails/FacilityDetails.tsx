@@ -1,7 +1,6 @@
 // import CheckAvailability from "@/components/CheckAvailability";
 import BookingFacility from "@/components/BookingFacility";
 import BookingFacilityModal from "@/components/BookingFacilityModal";
-import { Button } from "@/components/ui/button";
 import { useGetSingleFacilityQuery } from "@/redux/api/facilityApi/facilityApi";
 import { CircleCheck, MapPin, OctagonAlert } from "lucide-react";
 import { useParams } from "react-router-dom";
@@ -73,9 +72,8 @@ const FacilityDetails = () => {
               </h3>
               <p>Check availability on your convenient time</p>
               <hr className="mt-3 mb-6 border-[#eaedf0]" />
-              <Button className="w-full py-6 text-md bg-[#192335]">
-                Book Now
-              </Button>
+
+              <BookingFacilityModal facility={facility} />
             </div>
           </div>
         </div>
@@ -136,9 +134,9 @@ const FacilityDetails = () => {
             </li>
           </ul>
         </div>
-        <div>
-          <BookingFacility facility={facility} />
-          <BookingFacilityModal />
+        <div className="my-4">
+          {/* <BookingFacility facility={facility} /> */}
+          <BookingFacilityModal facility={facility}/>
         </div>
       </div>
     </section>
