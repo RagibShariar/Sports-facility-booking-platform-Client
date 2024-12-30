@@ -16,6 +16,7 @@ const Login = () => {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm();
 
@@ -51,17 +52,43 @@ const Login = () => {
     }
   };
 
-  return (
-    <section className="lg:mt-16 lg:w-[450px] md:w-1/2 mx-auto lg:border lg:rounded-xl lg:shadow-md bg-gradient">
-      <div className="bg-white lg:m-1 lg:rounded-lg px-4 py-5 mx-auto dark:bg-slate-900">
-        <h4 className=" text-2xl font-semibold dark:text-gray-50">Login</h4>
-        <p className="mt-3 mb-6 text-sm font-medium text-gray-500">Enter your email below to login to your account</p>
+  const handleUserDemoLogin = () => {
+    // Fill in the demo email and password
+    setValue("email", "user@gmail.com");
+    setValue("password", "123456");
+  };
+  const handleAdminDemoLogin = () => {
+    // Fill in the demo email and password
+    setValue("email", "admin@gmail.com");
+    setValue("password", "123456");
+  };
+
+  return ( 
+    <section className="login h-[95vh] flex justify-center items-center">
+    <div className="backdrop-blur-xl lg:w-[550px] md:w-1/2 mx-auto  lg:rounded-xl lg:shadow-2xl  bg-transparent">
+      <div className="backdrop-blur-2xl lg:m-1 lg:rounded-lg px-8 py-10 mx-auto dark:bg-slate-900">
+        <h4 className="text-white text-3xl font-bold dark:text-gray-50">Welcome Back</h4>
+        <p className="mt-3 mb-6 text-sm font-medium text-white">Enter your email below to login to your account</p>
+
+          <div className="mb-4 flex justify-between gap-6">
+            <Button onClick={handleUserDemoLogin} className="block font-Outfit bg-teal-700 hover:bg-teal-800 w-full h-fit py-2 px-4 text-left">
+              <p className="text-lg">Demo User Login</p>
+              <p className="font-normal tracking-wide">Email: user@gmail.com</p>
+              <p className="font-normal tracking-wide">Password: 123456</p>
+            </Button>
+            <Button onClick={handleAdminDemoLogin} className="block font-Outfit bg-teal-700 hover:bg-teal-800 w-full h-fit py-2 px-4 text-left">
+              <p className="text-lg">Demo Admin Login</p>
+              <p className="font-normal tracking-wide">Email: admin@gmail.com</p>
+              <p className="font-normal tracking-wide">Password: 123456</p>
+            </Button>
+          </div>
 
         <form onSubmit={handleSubmit(handleLogin)} className=" ">
           <div className="grid gap-4">
             <div className="grid gap-2">
-              <Label htmlFor="email">Email</Label>
-              <Input
+              <Label className="text-white text-md" htmlFor="email">Email</Label>
+                <Input
+                className="text-md py-5 "
                 {...register("email", { required: true })}
                 type="email"
                 placeholder="m@example.com"
@@ -74,7 +101,7 @@ const Login = () => {
             </div>
             <div className="grid gap-2">
               <div className="flex items-center">
-                <Label htmlFor="password">Password</Label>
+                <Label className="text-white text-md" htmlFor="password">Password</Label>
                 <Link
                   to="/forgot-password"
                   className="ml-auto inline-block text-sm underline"
@@ -82,7 +109,8 @@ const Login = () => {
                   Forgot your password?
                 </Link>
               </div>
-              <Input
+                <Input
+                className="text-md py-5 "
                 {...register("password", { required: true })}
                 type="password"
                 placeholder="•••••••••"
@@ -93,7 +121,7 @@ const Login = () => {
                 </span>
               )}
             </div>
-            <Button type="submit" className="w-full">
+            <Button type="submit" className="w-full mt-4 py-5 text-md font-bold">
               Login
             </Button>
           </div>
@@ -108,7 +136,8 @@ const Login = () => {
           </div>
         </div>
       </div>
-    </section>
+      </div>
+      </section>
   );
 };
 export default Login;

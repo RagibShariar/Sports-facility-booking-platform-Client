@@ -27,6 +27,7 @@ const LoginModal = () => {
     register,
     handleSubmit,
     formState: { errors },
+    setValue
   } = useForm();
   const navigate = useNavigate();
   const [login] = useLoginMutation();
@@ -61,13 +62,24 @@ const LoginModal = () => {
     }
   };
 
+  const handleUserDemoLogin = () => {
+    // Fill in the demo email and password
+    setValue("email", "user@gmail.com");
+    setValue("password", "123456");
+  };
+  const handleAdminDemoLogin = () => {
+    // Fill in the demo email and password
+    setValue("email", "admin@gmail.com");
+    setValue("password", "123456");
+  };
+
   return (
     <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
       <DialogTrigger asChild>
         <Link to="">Login</Link>
       </DialogTrigger>
       <DialogContent
-        className="sm:max-w-[425px]"
+        className="sm:max-w-[500px] "
         onInteractOutside={(e) => e.preventDefault()}
       >
         <DialogHeader className="mb-4">
@@ -76,6 +88,19 @@ const LoginModal = () => {
             Enter your email below to login to your account
           </DialogDescription>
         </DialogHeader>
+
+        <div className="mb-4 lg:flex justify-between gap-6 ">
+            <Button onClick={handleUserDemoLogin} className="block font-Outfit bg-teal-700 hover:bg-teal-800 w-full h-fit py-2 px-4 text-left">
+              <p className="text-lg">Demo User Login</p>
+              <p className="font-normal tracking-wide">Email: user@gmail.com</p>
+              <p className="font-normal tracking-wide">Password: 123456</p>
+            </Button>
+            <Button onClick={handleAdminDemoLogin} className="block font-Outfit bg-teal-700 hover:bg-teal-800 w-full h-fit py-2 px-4 text-left">
+              <p className="text-lg">Demo Admin Login</p>
+              <p className="font-normal tracking-wide">Email: admin@gmail.com</p>
+              <p className="font-normal tracking-wide">Password: 123456</p>
+            </Button>
+          </div>
 
         <form onSubmit={handleSubmit(handleLogin)}>
           <div className="grid gap-4">

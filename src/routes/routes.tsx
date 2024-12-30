@@ -19,6 +19,7 @@ import { adminPaths } from "./admin.routes";
 import AdminRoutes from "./AdminRoutes";
 import ProtectedRoutes from "./ProtectedRoutes";
 import MainLayout from "@/layout/MainLayout";
+import UserDashboard from "@/pages/User/UserDashboard";
 
 export const router = createBrowserRouter([
   {
@@ -98,11 +99,15 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <UserProfile />,
+        element: <UserDashboard />,
       },
       {
         path: "bookings",
         element: <ViewBookings />,
+      },
+      {
+        path: "my-profile",
+        element: <UserProfile />,
       },
     ],
   },

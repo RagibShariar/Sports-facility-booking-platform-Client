@@ -132,7 +132,7 @@ const Navbar = () => {
                 <DropdownMenuItem>
                   <Link to="/user" className="flex">
                     <NotebookPen size={17} className="mr-2" />
-                    Profile
+                    Dashboard
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />

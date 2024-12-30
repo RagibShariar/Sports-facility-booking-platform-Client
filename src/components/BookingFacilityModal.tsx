@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { DayPicker } from "react-day-picker";
-import "react-day-picker/style.css";
+// import "react-day-picker/style.css";
 import { Button } from "./ui/button";
 import {
   Dialog,

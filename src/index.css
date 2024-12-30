@@ -137,3 +137,21 @@
 .myShadow{
  box-shadow:  0 4px 44px #d3d3d340;
 }
+
+.login{
+  background: url("../src//assets/images/auth/image (4).jpg") #241d39cc no-repeat;
+  background-size: cover ;
+  background-position: center right;
+}
+
+.sign-up{
+  background: url("../src//assets/images/auth/image (3).jpg") #241d39cc no-repeat;
+  background-size: cover;
+  background-position: bottom ;
+}
+
+.user-dashboard{
+  background: url("../src//assets/images/aboutUs/breadcrumb-bg2.764bf72ee919b156bf7d.jpg") #241d39cc no-repeat;
+  background-size: cover;
+  background-blend-mode: multiply;
+}
