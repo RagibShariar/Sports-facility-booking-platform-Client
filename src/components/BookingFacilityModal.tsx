@@ -26,7 +26,10 @@ const BookingFacilityModal = ({ facility }: any) => {
   const [selected, setSelected] = useState<Date>();
   const date = selected ? format(selected, "yyyy-MM-dd") : "";
 
-  const [selectedSlot, setSelectedSlot] = useState(null);
+  const [selectedSlot, setSelectedSlot] = useState<{
+    startTime: string;
+    endTime: string;
+  } | null>(null);
   const formattedDate = date ? format(date, "yyyy-MM-dd") : "";
   const { data } = useCheckAvailabilityQuery(formattedDate);
   const availableTimes = data?.data || [];

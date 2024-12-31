@@ -9,8 +9,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useVerifyLoginMutation } from "@/redux/api/auth/authApi";
-import { setUser, TUser, userRole } from "@/redux/features/authSlice";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { setUser, TUser } from "@/redux/features/authSlice";
+import { useAppDispatch } from "@/redux/hooks";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
@@ -20,7 +20,6 @@ const VerifyOTP = () => {
   const navigate = useNavigate();
   const [verifyLogin] = useVerifyLoginMutation();
   const email = localStorage.getItem("userEmail");
-  const role = useAppSelector(userRole);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleOTP = async (e: any) => {
@@ -38,7 +37,7 @@ const VerifyOTP = () => {
 
       dispatch(setUser({ user: user, token: res.token }));
       toast.success("Login Successful", { id: toastId, duration: 2000 });
-      
+
       if (user.role === "admin") {
         // return <Navigate to="/admin" replace={true} />;
         navigate("/admin");

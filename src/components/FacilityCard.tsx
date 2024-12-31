@@ -1,9 +1,18 @@
 import { Calendar, Heart, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Separator } from "./ui/separator";
+import { useGetReviewQuery } from "@/redux/api/reviewApi/reviewApi";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function FacilityCard({ facility }: any) {
+const { data: reviews } = useGetReviewQuery(facility._id);
+
+
+  const averageRating =
+  reviews?.data.reduce((sum: any, review: any) => sum + review?.rating, 0) /
+    reviews?.data.length;
+  
+  
   return (
     <div className="facilityCard max-w-sm mx-3 lg:mx-0 rounded-lg shadow-lg  overflow-hidden bg-white dark:border dark:text-gray-300 dark:bg-transparent">
       <div className="relative overflow-hidden">
@@ -28,9 +37,9 @@ function FacilityCard({ facility }: any) {
         <div className="flex items-start justify-between ">
           <div className="flex items-center  mb-4 mt-1">
             <div className="bg-yellow-500 text-white px-2 rounded-md text-sm font-bold mr-2">
-              4.2
+            {averageRating ? averageRating.toFixed(1) : 0}
             </div>
-            <div className="text-gray-500 font-medium text-sm">300 Reviews</div>
+            <div className="text-gray-500 font-medium text-sm">{reviews?.data.length} Reviews</div>
           </div>
           <div className="bg-white border px-1 py-1 rounded-full text-gray-500 hover:bg-green-600 hover:text-white duration-500">
             <Heart size={18} />
@@ -55,7 +64,7 @@ function FacilityCard({ facility }: any) {
         <Separator className="my-6 " />
         <div className="flex items-center justify-end pb-3">
           <Link
-            to="/booking"
+            to={`/facilities/${facility?._id}`}
             className="font-semibold flex items-center hover:text-green-600 duration-150"
           >
             <Calendar size={15} className="mr-2" /> Book Now

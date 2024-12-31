@@ -18,7 +18,7 @@ import Login from "@/pages/Auth/LoginModal";
 
 import { logOut, useCurrentToken, userRole } from "@/redux/features/authSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { CircleUser, LogOut, Menu, NotebookPen, Users } from "lucide-react";
+import { CircleUser, LogOut, Menu, NotebookPen } from "lucide-react";
 import { toast } from "sonner";
 import logo from "../../assets/logo.svg";
 import { Button } from "../ui/button";
@@ -35,7 +35,7 @@ import ThemeSwitcher from "./ThemeSwitcher";
 const Navbar = () => {
   const token = useAppSelector(useCurrentToken);
   const dispatch = useAppDispatch();
-  const role = useAppSelector(userRole)
+  const role = useAppSelector(userRole);
 
   const handleLogOut = () => {
     dispatch(logOut());
@@ -130,22 +130,18 @@ const Navbar = () => {
               <DropdownMenuContent align="end">
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                  <DropdownMenuItem>
-                    {role === "admin" ? (
-                      <Link to="/admin" className="flex">
-                        <NotebookPen size={17} className="mr-2" />
-                        Dashboard
-                      </Link>
-                    )
-                      :
-                      (
-                        <Link to="/user" className="flex">
-                    <NotebookPen size={17} className="mr-2" />
-                    Dashboard
-                  </Link>
-                      )
-                  }
-                  
+                <DropdownMenuItem>
+                  {role === "admin" ? (
+                    <Link to="/admin" className="flex">
+                      <NotebookPen size={17} className="mr-2" />
+                      Dashboard
+                    </Link>
+                  ) : (
+                    <Link to="/user" className="flex">
+                      <NotebookPen size={17} className="mr-2" />
+                      Dashboard
+                    </Link>
+                  )}
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={handleLogOut}>
