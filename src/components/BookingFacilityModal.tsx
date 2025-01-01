@@ -21,7 +21,7 @@ import {
 
 const BookingFacilityModal = ({ facility }: any) => {
   const { _id } = facility;
-  const [createBooking] = useCreateBookingMutation();
+  const [createBooking, { isLoading }] = useCreateBookingMutation();
   const navigate = useNavigate();
   const [selected, setSelected] = useState<Date>();
   const date = selected ? format(selected, "yyyy-MM-dd") : "";
@@ -49,13 +49,15 @@ const BookingFacilityModal = ({ facility }: any) => {
       endTime: selectedSlot.endTime, // Extract endTime from the selectedSlot
     };
 
-    console.log(bookingInfo);
+    // console.log(bookingInfo);
 
     try {
       const res = await createBooking(bookingInfo);
       if (res?.data?.success === true) {
+        console.log(res.data.data);
         toast.success("Booking confirmed!");
-        navigate("/checkout");
+        // navigate("/checkout");
+        navigate("/checkout", { state: { booking: res.data.data } });
       }
       if ((res.error as FetchBaseQueryError)?.status === 401) {
         toast.error("Unauthorize Access. Please login before booking");
@@ -126,7 +128,14 @@ const BookingFacilityModal = ({ facility }: any) => {
                     onClick={handleBooking}
                     className=" mt-4 px-10 py-4 bg-gradient text-white font-semibold text-base rounded"
                   >
-                    Confirm Booking
+                    {isLoading ? (
+                      <div className="flex justify-center items-center gap-2">
+                        <span className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></span>
+                        <span>Create new Booking...</span>
+                      </div>
+                    ) : (
+                      "Confirm Booking"
+                    )}
                   </button>
                 </div>
               </DialogDescription>

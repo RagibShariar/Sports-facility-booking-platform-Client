@@ -6,19 +6,17 @@ import { useGetReviewQuery } from "@/redux/api/reviewApi/reviewApi";
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 import { format } from "date-fns";
-import { CircleCheck, MapPin, OctagonAlert } from "lucide-react";
-import { useState } from "react";
+import { CircleCheck, Loader2, MapPin, OctagonAlert } from "lucide-react";
 import { useParams } from "react-router-dom";
 import venueType from "../../assets/images/facility-details/venue-type.svg";
 import logo from "../../assets/images/hero/banner-cock2.svg";
+import AddReview from "./AddReview";
 
 const FacilityDetails = () => {
   const { id } = useParams();
-  const { data, isLoading } = useGetSingleFacilityQuery(id);
+  const { data, isLoading: isFacilityLoading } = useGetSingleFacilityQuery(id);
   const facility = data?.data;
-  const { data: reviews } = useGetReviewQuery(id);
-  const [rating, setRating] = useState(0);
-  // console.log(rating);
+  const { data: reviews, isLoading: isReviewLoading } = useGetReviewQuery(id);
 
   const averageRating =
     reviews?.data.reduce((sum: any, review: any) => sum + review?.rating, 0) /
@@ -26,28 +24,35 @@ const FacilityDetails = () => {
 
   // console.log(Number(averageRating));
 
-  if (isLoading) {
+  if (isFacilityLoading) {
     return (
       <div className="h-[85vh] flex items-center justify-center font-semibold ">
         <img className="animate-spin" src={logo} alt="" />
       </div>
     );
   }
+  if (isReviewLoading) {
+    return (
+      <div className="h-[85vh] flex items-center justify-center font-semibold ">
+        <Loader2 size={50} />
+      </div>
+    );
+  }
 
   return (
-    <section className="bg-gray-100 py-10 lg:py-20">
+    <section className="bg-gray-100 py-10 lg:py-20 ">
       <div className="w-full lg:max-w-7xl mx-auto  font-Outfit relative">
-        <div className="grid grid-cols-12  items-center justify-between">
-          <div className="col-span-8 w-full lg:w-[800px] rounded-lg">
+        <div className="lg:grid grid-cols-12 gap-6 items-center justify-between    ">
+          <div className="col-span-8 w-full  rounded-lg">
             <img
               className="object-cover w-full rounded-lg"
               src={facility?.imageUrl}
               alt={facility?.name}
             />
           </div>
-          <div className="col-span-4 sticky top-32  ">
-            <div className="">
-              <div className="bg-white p-6 rounded-lg  ">
+          <div className="col-span-4  sticky top-32">
+            <div>
+              <div className="sticky top-32 bg-white p-6 rounded-lg  ">
                 <h1 className="text-[#192335] text-3xl font-bold">
                   {facility?.name}
                 </h1>
@@ -100,7 +105,7 @@ const FacilityDetails = () => {
                 </div>
               </div>
               {/* book now  */}
-              <div className="bg-white p-6 mt-6 rounded-lg  ">
+              <div className=" sticky top-32 bg-white p-6 mt-6 rounded-lg  ">
                 <h3 className="text-[#192335] text-xl font-semibold">
                   Book a Court
                 </h3>
@@ -113,7 +118,7 @@ const FacilityDetails = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-12 gap-6 mt-6">
+        <div className="lg:grid grid-cols-12 gap-6 mt-6">
           <div className="col-span-8">
             {/* overview */}
             <div className="bg-slate-50 p-6 mt-6 rounded-lg">
@@ -234,6 +239,7 @@ const FacilityDetails = () => {
                 )}
               </div>
             </div>
+
             {/* Write a review */}
             <div className="bg-slate-50 p-6 mt-6 rounded-lg">
               <h3 className="text-[#192335] text-xl font-semibold">
@@ -241,36 +247,7 @@ const FacilityDetails = () => {
               </h3>
               <hr className="mt-3 mb-3 border-[#eaedf0]" />
               <div>
-                <form>
-                  <div className="my-4 flex items-center gap-2">
-                    {/* rating */}
-                    <Rating
-                      style={{ maxWidth: 180 }}
-                      value={rating}
-                      onChange={setRating}
-                      isRequired
-                    />
-                    <p className="text-lg font-medium text-gray-600">
-                      ({rating})
-                    </p>
-                    {rating > 0 && (
-                      <button
-                        className="text-red-500 underline ml-4"
-                        type="button"
-                        onClick={() => setRating(0)}
-                      >
-                        Reset
-                      </button>
-                    )}
-                  </div>
-                  <textarea
-                    placeholder="Write a review"
-                    className="text-lg w-full h-36 p-3 mt-2 rounded-lg "
-                  ></textarea>
-                  <button className=" bg-gradient text-white w-full mt-4 p-3 rounded-lg">
-                    Submit
-                  </button>
-                </form>
+                <AddReview id={id as string} />
               </div>
             </div>
           </div>

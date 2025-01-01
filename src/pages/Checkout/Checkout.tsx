@@ -1,4 +1,16 @@
+import { useLocation } from "react-router-dom";
+
 const Checkout = () => {
+  const location = useLocation();
+  const booking = location.state?.booking;
+  console.log(booking);
+
+  if (!booking) {
+    return <p>No booking data found. Please try again.</p>;
+  }
+
+
+
   return (
     <>
       <div className="  p-4">
@@ -78,7 +90,9 @@ const Checkout = () => {
             </div>
 
             <div className="bg-gray-100 p-6 rounded-md dark:bg-gray-900 dark:border">
-              <h2 className="text-3xl font-extrabold text-gray-800 dark:text-gray-50">$250.00</h2>
+              <h2 className="text-3xl font-extrabold text-gray-800 dark:text-gray-50">
+                $ {booking.payableAmount}
+              </h2>
 
               <ul className="text-gray-800 mt-8 space-y-4 dark:text-gray-50">
                 <li className="flex flex-wrap gap-4 text-sm">

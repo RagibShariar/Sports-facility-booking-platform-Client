@@ -30,6 +30,7 @@ import {
   useCancelBookingMutation,
   useViewBookingsQuery,
 } from "@/redux/api/bookingsApi/bookingsApi";
+import { format } from "date-fns";
 import { Ellipsis, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 const ViewBookings = () => {
@@ -77,7 +78,7 @@ const ViewBookings = () => {
             <TableHead>Actions</TableHead>
           </TableRow>
         </TableHeader>
-        <TableBody>
+        <TableBody className="font-Outfit">
           {bookings
             ?.slice()
             .reverse()
@@ -85,7 +86,7 @@ const ViewBookings = () => {
             .map((booking: any, index: number) => (
               <TableRow key={booking?._id}>
                 <TableCell>{index + 1}</TableCell>
-                <TableCell className="font-medium">
+                <TableCell className=" text-base font-medium">
                   {booking?.facility.name}
                 </TableCell>
                 <TableCell>{booking?.facility.location}</TableCell>
@@ -93,7 +94,9 @@ const ViewBookings = () => {
                 <TableCell>
                   <BookingBadge status={booking?.isBooked} />
                 </TableCell>
-                <TableCell>{booking?.date}</TableCell>
+                <TableCell>
+                  {format(new Date(booking?.date), "dd MMM, yyyy")}
+                </TableCell>
                 <TableCell>{booking?.startTime}</TableCell>
                 <TableCell>{booking?.endTime}</TableCell>
                 <TableCell>{booking?.payableAmount}</TableCell>

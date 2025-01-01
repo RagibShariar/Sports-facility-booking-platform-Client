@@ -14,6 +14,9 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useLoginMutation } from "@/redux/api/auth/authApi";
+import { setUser, TUser } from "@/redux/features/authSlice";
+import { useAppDispatch } from "@/redux/hooks";
+import { jwtDecode } from "jwt-decode";
 import { useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import { MdErrorOutline } from "react-icons/md";
@@ -22,6 +25,7 @@ import { toast } from "sonner";
 import GoogleSignIn from "./GoogleSignIn";
 
 const LoginModal = () => {
+  const dispatch = useAppDispatch();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const {
     register,
@@ -45,9 +49,19 @@ const LoginModal = () => {
 
       if (res?.success) {
         toast.success(res?.data?.message, { id: toastId, duration: 2000 });
-        localStorage.setItem("userEmail", loginInfo.email);
         setIsDialogOpen(false);
-        navigate("/verify");
+
+        const user = jwtDecode(res.token) as TUser;
+
+        dispatch(setUser({ user: user, token: res.token }));
+        toast.success("Login Successful", { id: toastId, duration: 2000 });
+
+        if (user.role === "admin") {
+          // return <Navigate to="/admin" replace={true} />;
+          navigate("/admin");
+        } else {
+          navigate("/");
+        }
       }
 
       // const user = jwtDecode(res.token) as TUser;

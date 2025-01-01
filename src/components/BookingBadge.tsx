@@ -4,18 +4,18 @@ const BookingBadge = ({ status }: { status: string }) => {
   const getBadgeVariant = (status: string) => {
     switch (status) {
       case "confirmed":
-        return "bg-green-600 ";
-      case "unconfirmed":
-        return "bg-yellow-600";
+        return "bg-green-600 hover:bg-green-600";
+      case "pending":
+        return "bg-yellow-600 hover:bg-yellow-600";
       case "cancelled":
-        return "bg-red-500";
+        return "bg-red-500 hover:bg-red-500";
       default:
         return "outline"; // default variant
     }
   };
 
   return (
-    <Badge className={getBadgeVariant(status)}>
+    <Badge className={getBadgeVariant(status) }>
       {status.charAt(0).toUpperCase() + status.slice(1)}
     </Badge>
   );
